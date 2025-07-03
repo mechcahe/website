@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MECHACHE ElhadjeAhmed - AI Engineer Portfolio</title>
+    <style>
+        /* CSS RESET & FONT IMPORT */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #0a65c2;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg-color: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --border-color: #e0e0e0;
+        }
+
+        body.dark-mode {
+            --primary-color: #4dabf7;
+            --secondary-color: #4dabf7;
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg-color: #1e1e1e;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --border-color: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--text-color); line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 1100px; margin: auto; padding: 0 20px; }
+        section { padding: 6rem 0; }
+        h1, h2, h3, h4 { line-height: 1.2; margin-bottom: 1rem; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; font-weight: 600; }
+        a { text-decoration: none; color: var(--primary-color); }
+        .btn { display: inline-block; padding: 12px 28px; background: var(--primary-color); color: #fff; border-radius: 5px; font-weight: 600; transition: background-color 0.3s, transform 0.3s; }
+        .btn:hover { background: var(--secondary-color); transform: translateY(-2px); }
+
+        /* HEADER & NAVIGATION */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 0; background-color: var(--card-bg-color); box-shadow: 0 2px 10px var(--shadow-color); z-index: 1000; transition: background-color 0.3s; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-size: 1.5rem; font-weight: 700; color: var(--text-color); }
+        .nav-menu { display: flex; list-style: none; align-items: center; }
+        .nav-item { margin-left: 2rem; }
+        .nav-link { font-weight: 400; color: var(--text-color); transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-color); }
+        .dark-mode-toggle { cursor: pointer; font-size: 1.2rem; margin-left: 1.5rem; }
+        .hamburger { display: none; cursor: pointer; }
+        .bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: var(--text-color); }
+
+        /* HERO SECTION */
+        #hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100vh; }
+        #hero h1 { font-size: 4rem; font-weight: 700; }
+        #hero p { font-size: 1.5rem; font-weight: 300; margin-bottom: 2rem; }
+
+        /* ABOUT ME SECTION */
+        .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; }
+        .about-images { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .about-images img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 15px var(--shadow-color); transition: transform 0.3s; }
+        .about-images img:hover { transform: scale(1.05); }
+        .about-images .solo-photo { grid-column: 1 / -1; }
+        .about-content h3 { font-size: 1.8rem; font-weight: 600; color: var(--primary-color); }
+
+        /* PROJECTS SECTION */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .project-card { background: var(--card-bg-color); border-radius: 8px; box-shadow: 0 4px 15px var(--shadow-color); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px var(--shadow-color); }
+        .project-thumbnail a { display: block; position: relative; }
+        .project-thumbnail img { width: 100%; display: block; height: 220px; object-fit: cover; }
+        .project-thumbnail .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; color: rgba(255, 255, 255, 0.8); transition: transform 0.3s, color 0.3s; }
+        .project-thumbnail a:hover .play-icon { transform: translate(-50%, -50%) scale(1.2); color: #fff; }
+        .project-info { padding: 1.5rem; flex-grow: 1; }
+        .project-title-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .project-title-bar h3 { margin-bottom: 0; font-size: 1.5rem; }
+        .github-link { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--border-color); border-radius: 5px; font-size: 0.9rem; font-weight: 600; color: var(--text-color); transition: all 0.3s; }
+        .github-link:hover { background-color: var(--text-color); color: var(--background-color); }
+        .project-info p { margin-bottom: 1.5rem; }
+        
+        .screenshot-wrapper { overflow-x: auto; padding-bottom: 10px; }
+        .screenshot-gallery { display: flex; gap: 10px; padding: 5px 0; }
+        .screenshot-gallery img { height: 100px; width: auto; border-radius: 5px; border: 2px solid var(--border-color); cursor: pointer; transition: transform 0.2s; flex-shrink: 0; }
+        .screenshot-gallery img:hover { transform: scale(1.05); }
+        .screenshot-wrapper::-webkit-scrollbar { height: 8px; }
+        .screenshot-wrapper::-webkit-scrollbar-track { background: var(--border-color); border-radius: 4px; }
+        .screenshot-wrapper::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        .screenshot-wrapper::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* POSTERS SECTION */
+        #posters { background-color: var(--card-bg-color); }
+        .posters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: center; }
+        .poster-card { border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px; transition: box-shadow 0.3s; }
+        .poster-card:hover { box-shadow: 0 4px 15px var(--shadow-color); }
+        .poster-card img { width: 100%; max-height: 400px; object-fit: contain; margin-bottom: 1rem; border-radius: 5px; cursor: pointer; }
+
+        /* RESUME & CONTACT SECTION */
+        #resume, #contact { text-align: center; }
+        #resume p, #contact p { max-width: 600px; margin: 0 auto 2rem auto; }
+        .contact-links { display: flex; justify-content: center; gap: 2rem; font-size: 2rem; margin-top: 2rem; }
+        
+        /* FOOTER */
+        footer { background: var(--text-color); color: var(--background-color); text-align: center; padding: 2rem 0; }
+        .footer-socials a { color: var(--background-color); margin: 0 10px; font-size: 1.5rem; }
+
+        /* IMAGE LIGHTBOX/MODAL STYLES */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; animation: fadeIn 0.3s; }
+        .modal-content { display: block; margin: auto; max-width: 90%; max-height: 85%; animation: zoomIn 0.3s; }
+        .modal-close { position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .modal-close:hover, .modal-close:focus { color: #bbb; text-decoration: none; }
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+        @keyframes zoomIn { from {transform: scale(0.8);} to {transform: scale(1);} }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background-color: var(--card-bg-color); width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 10px var(--shadow-color); }
+            .nav-menu.active { left: 0; }
+            .nav-item { margin: 1.5rem 0; }
+            #hero h1 { font-size: 2.5rem; }
+            #hero p { font-size: 1.2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 2rem; }
+        }
+    </style>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <!-- MODAL (LIGHTBOX) STRUCTURE -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close">×</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <header>
+        <div class="container navbar">
+            <a href="#hero" class="nav-logo">MECHACHE ElhadjeAhmed</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#posters" class="nav-link">Posters</a></li>
+                <li class="nav-item"><a href="#resume" class="nav-link">Resume</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><span class="dark-mode-toggle"><i class="fas fa-moon"></i></span></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <h1>MECHACHE ElhadjeAhmed</h1>
+            <p>Artificial Intelligence Engineer</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </section>
+
+        <!-- ABOUT ME SECTION -->
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-grid">
+                    <div class="about-images">
+                       
+                        <img src="images/about_photo2.jpg" alt="Presenting on TV">
+                        <img src="images/about_photo1.jpg" alt="Presenting on TV">
+                    </div>
+                    <div class="about-content">
+                        <h3>AI Engineer & Researcher</h3>
+                        <p>
+                            I am a passionate and results-driven Artificial Intelligence Engineer with a strong foundation in machine learning, deep learning, and data science. My work focuses on developing innovative AI solutions to tackle real-world challenges. From NLP models that enhance text readability to computer vision systems for industrial applications, I enjoy bridging the gap between cutting-edge research and practical implementation.
+                        </p>
+                        <p>
+                            With experience in both academic research and software development, I possess a unique blend of theoretical knowledge and hands-on technical skills. I am proficient in Python, TensorFlow, and PyTorch, and I am always eager to learn and apply new technologies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <div class="container">
+                <h2>AI Projects & Demos</h2>
+                <div class="projects-grid">
+                    
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-thumbnail">
+                            <a href="https://youtu.be/P4fSOiUhxEI" target="_blank">
+                                <img src="projects/project1_cover.PNG" alt="Project 1 Thumbnail">
+                                <div class="play-icon"><i class="far fa-play-circle"></i></div>
+                            </a>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title-bar">
+                                <h3>Arabic Readability Assessment (AI Project)</h3>
+                                <a href="https://github.com/ElhadjeAhmed/Arabic-Readability-Assessment-AI-Project-" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                            <p>Developed and presented a multi-model system to assess Arabic text readability using deep learning, frequency models, and BERT-based analysis.</p>
+                            <h4>Screenshots:</h4>
+                            <div class="screenshot-wrapper">
+                                <div class="screenshot-gallery">
+                                     
+                                <img src="projects/project1_ss1.PNG" alt="Project 1 Screenshot 2">
+                                <img src="projects/project1_ss2.PNG" alt="Project 1 Screenshot 2">
+                                <img src="projects/project1_ss3.PNG" alt="Project 1 Screenshot 2">
+                                <img src="projects/project1_ss4.PNG" alt="Project 1 Screenshot 2">
+                                <img src="projects/project1_ss5.PNG" alt="Project 1 Screenshot 2">
+                                <!-- Add more <img> tags for more screenshots -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-thumbnail">
+                            <a href="https://youtu.be/jss4F4MbLyg" target="_blank">
+                                
+                                <img src="projects/project2_cover.PNG" alt="Project 2 Thumbnail">
+                                <div class="play-icon"><i class="far fa-play-circle"></i></div>
+                            </a>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title-bar">
+                                <h3>RetinaGuard – Diabetic Retinopathy Detection</h3>
+                                <a href="https://github.com/ElhadjeAhmed/Diabetic-Retinopathy-Detection" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                            <p>An AI-based system that detects and grades diabetic retinopathy severity levels (0–4) from fundus images. Integrated Grad-CAM for visual explanations and designed for lightweight deployment on basic devices.</p>
+                            <h4>Screenshots:</h4>
+                            <div class="screenshot-wrapper">
+                                <div class="screenshot-gallery">
+                                     <img src="projects/project2_ss1.PNG" alt="Project 1 Screenshot 1">
+                                     <img src="projects/project2_ss2.PNG" alt="Project 1 Screenshot 2">
+                                     <img src="projects/project2_ss3.PNG" alt="Project 1 Screenshot 2">
+                                     <img src="projects/project2_ss4.PNG" alt="Project 1 Screenshot 2">
+                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-thumbnail">
+                            <a href="https://youtu.be/3BMCbcBe2i0" target="_blank">
+                                <img src="projects/project3_cover.PNG" alt="Project 3 Thumbnail">
+                                <div class="play-icon"><i class="far fa-play-circle"></i></div>
+                            </a>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title-bar">
+                                <h3>Transportly – Plateforme de transport de marchandises</h3>
+                                <a href="https://github.com/ElhadjeAhmed/transportily" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                            <p>Transportly est une application mobile innovante conçue pour faciliter la mise en relation entre les clients ayant des marchandises à transporter et les transporteurs disponibles à travers l’Algérie. L’objectif est de digitaliser et simplifier le processus de transport grâce à une plateforme intuitive, rapide et accessible à tous.</p>
+                            <h4>Screenshots:</h4>
+                            <div class="screenshot-wrapper">
+                                <div class="screenshot-gallery">
+                                <img src="projects/project3_ss1.jpg" alt="Project 1 Screenshot 1">
+                                <img src="projects/project3_ss2.jpg" alt="Project 1 Screenshot 2">
+                                <img src="projects/project3_ss3.jpg" alt="Project 1 Screenshot 2">
+                                <img src="projects/project3_ss4.jpg" alt="Project 1 Screenshot 2">
+                                <img src="projects/project3_ss5.jpg" alt="Project 1 Screenshot 2">
+                                <img src="projects/project3_ss6.jpg" alt="Project 1 Screenshot 2">
+                                <img src="projects/project3_ss3.jpg" alt="Project 1 Screenshot 2">
+                                <img src="projects/project3_ss4.jpg" alt="Project 1 Screenshot 2">
+                                <img src="projects/project3_ss5.jpg" alt="Project 1 Screenshot 2">
+                                <!-- Add more <img> tags for more screenshots -->
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- RESEARCH POSTERS SECTION -->
+        <section id="posters">
+            <div class="container">
+                <h2>Research Posters</h2>
+                <div class="posters-grid">
+                    <div class="poster-card">
+                        <img src="posters/poster_readability.jpg" alt="Arabic Readability Poster Preview" class="lightbox-trigger">
+                        <h4>Arabic Readability Research</h4>
+                        <a href="posters/poster_readability.pdf" class="btn" target="_blank">Download PDF</a>
+                    </div>
+                    <div class="poster-card">
+                        <img src="posters/poster_hydroedge.jpg" alt="HydroEdge Poster Preview" class="lightbox-trigger">
+                        <h4>HydroEdge Project</h4>
+                        <a href="posters/poster_hydroedge.pdf" class="btn" target="_blank">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESUME SECTION -->
+        <section id="resume">
+            <div class="container">
+                <h2>My Resume</h2>
+                <p>For a detailed overview of my skills, experience, and academic qualifications, please view my full resume.</p>
+                <a href="resume/resume.pdf" class="btn" target="_blank">View Resume <i class="fas fa-download"></i></a>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out!</p>
+                <p><strong>Email:</strong> <a href="mailto:elhadjemechache@gmail.com">elhadjemechache@gmail.com</a></p>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/ai-engineer-elhadjeahmed" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/ElhadjeAhmed" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ai-engineer-elhadjeahmed" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ElhadjeAhmed" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+            <p>© 2024 MECHACHE ElhadjeAhmed. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }));
+
+            const darkModeToggle = document.querySelector('.dark-mode-toggle');
+            const body = document.body;
+            const toggleIcon = darkModeToggle.querySelector('i');
+            const setTheme = (isDark) => {
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                    toggleIcon.classList.replace('fa-moon', 'fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    toggleIcon.classList.replace('fa-sun', 'fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+            const savedTheme = localStorage.getItem('theme');
+            setTheme(savedTheme === 'dark');
+            darkModeToggle.addEventListener('click', () => setTheme(!body.classList.contains('dark-mode')));
+
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+            const closeModal = document.querySelector(".modal-close");
+            
+            lightboxTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function() {
+                    modal.style.display = "flex";
+                    modalImg.src = this.src;
+                });
+            });
+
+            const closeTheModal = () => { modal.style.display = "none"; }
+            closeModal.onclick = closeTheModal;
+            modal.addEventListener('click', (event) => { if (event.target === modal) { closeTheModal(); } });
+        });
+    </script>
+</body>
+</html>
